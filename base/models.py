@@ -48,3 +48,53 @@ class Trinkets(models.Model):
 
     def __str__(self):
         return f'{self.dice} {self.value}'
+
+
+class Stats(models.Model):
+    stat_name = models.CharField(max_length=20, verbose_name='Характеристика')
+    stat_description = models.CharField(max_length=100, verbose_name='Показатель')
+    stat_main = models.CharField(max_length=100, verbose_name='Важно для')
+
+    class Meta:
+        verbose_name = 'Характеристика'
+        verbose_name_plural = 'Характеристики'
+
+    def __str__(self):
+        return self.stat_name
+
+
+class Conditions(models.Model):
+    condition_name = models.CharField(max_length=100, verbose_name='Состояние')
+    condition_description = models.TextField(verbose_name='Описание')
+
+    class Meta:
+        verbose_name = 'Состояние'
+        verbose_name_plural = 'Состояния'
+        ordering = ['condition_name']
+
+    def __str__(self):
+        return self.condition_name
+
+
+class Creatures(models.Model):
+    creature_name = models.CharField(max_length=100, verbose_name='Название')
+    creature_description = models.CharField(max_length=100, verbose_name='Описание')
+    creature_armor = models.CharField(max_length=100, verbose_name='Класс доспеха')
+    creature_hits = models.CharField(max_length=30, verbose_name='Хиты')
+    creature_speed = models.CharField(max_length=100, verbose_name='Скорость')
+    creature_stats = models.CharField(max_length=100, verbose_name='Характеристики')
+    creature_abilities = models.CharField(max_length=100, verbose_name='Навыки')
+    creature_specs = models.CharField(max_length=100, verbose_name='Чувства')
+    creature_conditions = models.CharField(max_length=100, verbose_name='Состояния', blank=True)
+    creature_languages = models.CharField(max_length=100, verbose_name='Языки', blank=True)
+    creature_danger = models.CharField(max_length=100, verbose_name='Опасность')
+    creature_skills = models.TextField(verbose_name='Способности')
+    creature_actions = models.TextField(verbose_name='Действия')
+
+    class Meta:
+        verbose_name = 'Существо'
+        verbose_name_plural = 'Существа'
+        ordering = ['creature_name']
+
+    def __str__(self):
+        return self.creature_name
