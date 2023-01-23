@@ -98,3 +98,52 @@ class Creatures(models.Model):
 
     def __str__(self):
         return self.creature_name
+
+
+class RaceList(models.Model):
+    name = models.CharField(max_length=30, verbose_name='Раса')
+
+    class Meta:
+        verbose_name = 'Список рас'
+        verbose_name_plural = 'Список рас'
+        ordering = ['name']
+
+    def __str__(self):
+        return self.name
+
+
+class Abilities(models.Model):
+    title = models.CharField(max_length=100, verbose_name='Особенность')
+    content = models.TextField(verbose_name='Описание')
+    race = models.ForeignKey(RaceList, on_delete=models.CASCADE, verbose_name='К расе')
+
+    class Meta:
+        verbose_name = 'Особенность'
+        verbose_name_plural = 'Особенности'
+        ordering = ['race', 'title']
+
+    def __str__(self):
+        return f'{self.title} | {self.race}'
+
+
+class Races(models.Model):
+    race_family = models.ForeignKey(RaceList, on_delete=models.CASCADE, verbose_name='Раса')
+    race_name = models.CharField(max_length=100, verbose_name='Раса + разновидность')
+    race_description = models.TextField(verbose_name='Описание')
+    race_names = models.TextField(verbose_name='Имена')
+    race_stats = models.CharField(max_length=100, verbose_name='Увеличение характеристик')
+    race_age = models.TextField(verbose_name='Возраст')
+    race_worldview = models.TextField(verbose_name='Мировоззрение')
+    race_size = models.TextField(verbose_name='Размер')
+    race_speed = models.TextField(verbose_name='Скорость', blank=True)
+    race_language = models.TextField(verbose_name='Языки', blank=True)
+    race_abilities = models.ManyToManyField(Abilities, verbose_name='Особенности', blank=True)
+
+    class Meta:
+        verbose_name = 'Расы'
+        verbose_name_plural = 'Раса'
+        ordering = ['race_family', 'race_name']
+
+    def __str__(self):
+        return self.race_name
+
