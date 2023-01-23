@@ -146,4 +146,3 @@ class Races(models.Model):
 
     def __str__(self):
         return self.race_name
-
