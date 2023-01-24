@@ -31,4 +31,4 @@ class Stat(models.Model):
         verbose_name_plural = 'Характеристики'
 
     def __str__(self):
-        return f'{self.character}'
+        return f'Характеристики {self.character}'
