@@ -7,7 +7,8 @@ class Char(models.Model):
     char_name = models.CharField(max_length=30, verbose_name='Имя персонажа')
     char_race = models.ForeignKey(m.Races, on_delete=models.PROTECT, verbose_name='Раса')
     char_class = models.ForeignKey(m.Classes, on_delete=models.PROTECT, verbose_name='Класс')
-    char_disc = models.TextField(verbose_name='Описание персонажа')
+    char_disc = models.TextField(verbose_name='Описание внешности персонажа')
+    char_history = models.TextField(verbose_name='История персонажа')
 
     class Meta:
         verbose_name = 'Персонаж'
