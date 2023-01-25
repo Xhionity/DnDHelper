@@ -1,8 +1,8 @@
 from django.db import models
 from base import models as m
-# Create your models here.
 
 
+# Создание чара
 class Char(models.Model):
     char_name = models.CharField(max_length=30, verbose_name='Имя персонажа')
     char_race = models.ForeignKey(m.Races, on_delete=models.PROTECT, verbose_name='Раса')
@@ -18,6 +18,7 @@ class Char(models.Model):
         return self.char_name
 
 
+# Характеристики для создания персонажа
 class Stat(models.Model):
     character = models.ForeignKey(Char, on_delete=models.CASCADE, verbose_name='Характеристики персонажа')
     dexterity = models.IntegerField(verbose_name='Ловкость')

@@ -1,6 +1,8 @@
 from django.db import models
 
 
+# В base создание базы знаний
+# Модель для хранения Классов
 class Classes(models.Model):
     class_name = models.CharField(max_length=30, verbose_name='Название класса')
     class_description = models.TextField(verbose_name='Описание')
@@ -17,6 +19,7 @@ class Classes(models.Model):
         verbose_name_plural = 'Классы'
 
 
+# Модель для хранения базы заклинаний
 class Spells(models.Model):
     spell_name = models.CharField(max_length=50, verbose_name='Название заклинания')
     spell_lvl = models.IntegerField(verbose_name='Уровень заклинания')
@@ -37,6 +40,7 @@ class Spells(models.Model):
         ordering = ['spell_class', 'spell_lvl', 'spell_name']
 
 
+# Модель для хранения данных магазиа "Безделушки"
 class Trinkets(models.Model):
     dice = models.IntegerField(verbose_name='d100')
     value = models.TextField(verbose_name='Безделушка')
@@ -50,6 +54,7 @@ class Trinkets(models.Model):
         return f'{self.dice} {self.value}'
 
 
+# Мадель для описания харктеристик
 class Stats(models.Model):
     stat_name = models.CharField(max_length=20, verbose_name='Характеристика')
     stat_description = models.CharField(max_length=100, verbose_name='Показатель')
@@ -63,6 +68,7 @@ class Stats(models.Model):
         return self.stat_name
 
 
+# Модель для описания состояний персонажа
 class Conditions(models.Model):
     condition_name = models.CharField(max_length=100, verbose_name='Состояние')
     condition_description = models.TextField(verbose_name='Описание')
@@ -76,6 +82,7 @@ class Conditions(models.Model):
         return self.condition_name
 
 
+# Модель для хранения базы Созданий (Существ)
 class Creatures(models.Model):
     creature_name = models.CharField(max_length=100, verbose_name='Название')
     creature_description = models.CharField(max_length=100, verbose_name='Описание')
@@ -100,6 +107,7 @@ class Creatures(models.Model):
         return self.creature_name
 
 
+# Модель со списком расс - переходная модель
 class RaceList(models.Model):
     name = models.CharField(max_length=30, verbose_name='Раса')
 
@@ -112,6 +120,7 @@ class RaceList(models.Model):
         return self.name
 
 
+# Модель с Особенностями расс
 class Abilities(models.Model):
     title = models.CharField(max_length=100, verbose_name='Особенность')
     content = models.TextField(verbose_name='Описание')
@@ -126,6 +135,7 @@ class Abilities(models.Model):
         return f'{self.title} | {self.race}'
 
 
+# Модель с описанием рас
 class Races(models.Model):
     race_family = models.ForeignKey(RaceList, on_delete=models.CASCADE, verbose_name='Раса')
     race_name = models.CharField(max_length=100, verbose_name='Раса + разновидность')
