@@ -9,15 +9,19 @@ class CharForm(ModelForm):
 
         widgets = {
             'char_name': TextInput(attrs={
-                'class': '',
+                'class': 'form',
                 'placeholder': 'Имя персонажа'
             }),
             'char_view': TextInput(attrs={
-                'class': '',
+                'class': 'form',
                 'placeholder': 'Внешность персонажа'
             }),
             'char_history': TextInput(attrs={
-                'class': '',
+                'class': 'form',
                 'placeholder': 'История персонажа'
             })
         }
+
+"""
+Заменить class, когда будет готов css
+"""
